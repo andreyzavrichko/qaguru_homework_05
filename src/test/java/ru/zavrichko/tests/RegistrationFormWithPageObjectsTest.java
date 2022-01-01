@@ -1,9 +1,10 @@
-package ru.zavrichko;
+package ru.zavrichko.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import ru.zavrichko.pages.RegistrationPage;
 
 import java.io.File;
 
@@ -12,12 +13,14 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.*;
 
-public class RegistrationFormTest {
+public class RegistrationFormWithPageObjectsTest {
 
+    RegistrationPage registrationPage = new RegistrationPage();
 
     @BeforeAll
     static void beforeAll() {
         Configuration.startMaximized = true;
+        Configuration.baseUrl = "https://demoqa.com";
     }
 
 
@@ -25,11 +28,12 @@ public class RegistrationFormTest {
     @Test
     void RegistrationTest() {
         // Open website
-        open("https://demoqa.com/automation-practice-form");
+        registrationPage.openPage();
 
         // Find Element and Set value
-        $("#firstName").setValue("Alex");
-        $("#lastName").setValue("Smirnov");
+        registrationPage.typeFirstName("Alex");
+        registrationPage.typeLastName("Smirnov");
+
         $("#userEmail").setValue("alex.smirnov@gmail.com");
         $(".custom-control-label").click();
         $("#userNumber").setValue("5648798798");
@@ -51,17 +55,21 @@ public class RegistrationFormTest {
 
         // Assertion
         $("#example-modal-sizes-title-lg").shouldBe(visible);
-        $(".table-responsive").shouldHave(text("Alex"));
-        $(".table-responsive").shouldHave(text("Smirnov"));
-        $(".table-responsive").shouldHave(text("alex.smirnov@gmail.com"));
-        $(".table-responsive").shouldHave(text("Male"));
-        $(".table-responsive").shouldHave(text("5648798798"));
-        $(".table-responsive").shouldHave(text("15 May,2014"));
-        $(".table-responsive").shouldHave(text("English"));
-        $(".table-responsive").shouldHave(text("Sports, Reading, Music"));
-        $(".table-responsive").shouldHave(text("photo.jpg"));
-        $(".table-responsive").shouldHave(text("NCR Gurgaon"));
 
-    }
+    registrationPage
+            .checkResultsValue("Student Name", "Alex Smirnov")
+            .checkResultsValue("Student Email", "alex.smirnov@gmail.com")
+            .checkResultsValue("Gender", "Male")
+            .checkResultsValue("Mobile", "5648798798")
+            .checkResultsValue("Date of Birth", "15 May,2014")
+            .checkResultsValue("Subjects", "English")
+            .checkResultsValue("Hobbies", "Sports, Reading")
+            .checkResultsValue("Picture", "photo.jpg")
+            .checkResultsValue("Address", "Moscow, Manoilov Street, 64")
+            .checkResultsValue("State and City", "NCR Gurgaon");
+
+
+
+       }
 
 }
