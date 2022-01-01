@@ -23,53 +23,44 @@ public class RegistrationFormWithPageObjectsTest {
         Configuration.baseUrl = "https://demoqa.com";
     }
 
-
-
     @Test
     void RegistrationTest() {
         // Open website
         registrationPage.openPage();
 
         // Find Element and Set value
-        registrationPage.typeFirstName("Alex");
-        registrationPage.typeLastName("Smirnov");
+        registrationPage.typeFirstName("Alex")
+                .typeLastName("Smirnov")
+                .typeEmail("alex.smirnov@gmail.com")
+                .typeGender()
+                .typePhone("5648798798")
+                .typeDateOfBirth()
+                .calendarComponent.setDate();
 
-        $("#userEmail").setValue("alex.smirnov@gmail.com");
-        $(".custom-control-label").click();
-        $("#userNumber").setValue("5648798798");
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").click();
-        $(".react-datepicker__month-select").selectOption("May");
-        $(".react-datepicker__year-select").selectOption("2014");
-        $x("//div[contains(text(),'15')]").click();
-        $("#subjectsInput").setValue("Eng").pressEnter();
-        $x("//label[contains(text(),'Sports')]").click();
-        $x("//label[contains(text(),'Reading')]").click();
-        $x("//label[contains(text(),'Music')]").click();
-        File file = new File("src/test/resources/photo.jpg");
-        Selenide.$(byId("uploadPicture")).uploadFile(file);
-        $("#currentAddress").setValue("Moscow, Manoilov Street, 64");
-        $("#react-select-3-input").setValue("NCR").pressEnter();
-        $("#react-select-4-input").setValue("Gurgaon").pressEnter();
-        $("#submit").click();
+        registrationPage.typeSubject("Eng")
+                .typeCheckboxSports()
+                .typeCheckboxReading()
+                .typeCheckboxMusic()
+                .uploadFile("photo.jpg")
+                .typeAddress("Moscow, Manoilov Street, 64")
+                .typeState("NCR")
+                .typeCity("Gurgaon")
+                .typeSubmitButton();
 
         // Assertion
-        $("#example-modal-sizes-title-lg").shouldBe(visible);
+        registrationPage.checkVisibleTable();
 
-    registrationPage
-            .checkResultsValue("Student Name", "Alex Smirnov")
-            .checkResultsValue("Student Email", "alex.smirnov@gmail.com")
-            .checkResultsValue("Gender", "Male")
-            .checkResultsValue("Mobile", "5648798798")
-            .checkResultsValue("Date of Birth", "15 May,2014")
-            .checkResultsValue("Subjects", "English")
-            .checkResultsValue("Hobbies", "Sports, Reading")
-            .checkResultsValue("Picture", "photo.jpg")
-            .checkResultsValue("Address", "Moscow, Manoilov Street, 64")
-            .checkResultsValue("State and City", "NCR Gurgaon");
-
-
-
-       }
+        registrationPage
+                .checkResultsValue("Student Name", "Alex Smirnov")
+                .checkResultsValue("Student Email", "alex.smirnov@gmail.com")
+                .checkResultsValue("Gender", "Male")
+                .checkResultsValue("Mobile", "5648798798")
+                .checkResultsValue("Date of Birth", "15 May,2014")
+                .checkResultsValue("Subjects", "English")
+                .checkResultsValue("Hobbies", "Sports, Reading")
+                .checkResultsValue("Picture", "photo.jpg")
+                .checkResultsValue("Address", "Moscow, Manoilov Street, 64")
+                .checkResultsValue("State and City", "NCR Gurgaon");
+    }
 
 }
