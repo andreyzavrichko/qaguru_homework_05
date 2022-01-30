@@ -15,7 +15,6 @@ public class RegistrationFormWithFakerTest {
     String lastName = faker.name().lastName();
     String email = faker.internet().emailAddress();
 
-
     @BeforeAll
     static void beforeAll() {
         Configuration.startMaximized = true;
