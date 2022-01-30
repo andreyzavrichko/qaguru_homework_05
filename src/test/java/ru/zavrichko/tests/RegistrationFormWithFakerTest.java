@@ -60,4 +60,5 @@ public class RegistrationFormWithFakerTest {
                 .checkResultsValue("Address", "Moscow, Manoilov Street, 64")
                 .checkResultsValue("State and City", "NCR Gurgaon");
     }
+
 }
