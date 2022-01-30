@@ -138,6 +138,8 @@ public class RegistrationPage {
     public RegistrationPage checkVisibleTable() {
         visibleTable.shouldBe(visible);
 
+
+
         return this;
     }
 }
