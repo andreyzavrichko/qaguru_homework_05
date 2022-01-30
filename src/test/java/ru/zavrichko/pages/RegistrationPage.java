@@ -132,7 +132,6 @@ public class RegistrationPage {
         resultsTable.$(byText(key))
                 .parent().shouldHave(text(value));
 
-
         return this;
     }
 
