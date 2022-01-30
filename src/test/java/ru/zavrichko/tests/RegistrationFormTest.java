@@ -14,13 +14,10 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationFormTest {
 
-
     @BeforeAll
     static void beforeAll() {
         Configuration.startMaximized = true;
     }
-
-
 
     @Test
     void RegistrationTest() {
@@ -62,5 +59,4 @@ public class RegistrationFormTest {
                 text("photo.jpg"),
                 text("NCR Gurgaon"));
        }
-
 }

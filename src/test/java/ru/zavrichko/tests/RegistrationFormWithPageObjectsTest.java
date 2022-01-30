@@ -41,7 +41,6 @@ public class RegistrationFormWithPageObjectsTest {
 
         // Assertion
         registrationPage.checkVisibleTable();
-
         registrationPage
                 .checkResultsValue("Student Name", "Alex Smirnov")
                 .checkResultsValue("Student Email", "alex.smirnov@gmail.com")
@@ -54,5 +53,4 @@ public class RegistrationFormWithPageObjectsTest {
                 .checkResultsValue("Address", "Moscow, Manoilov Street, 64")
                 .checkResultsValue("State and City", "NCR Gurgaon");
     }
-
 }
