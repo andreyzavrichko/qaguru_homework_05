@@ -10,5 +10,7 @@ public class CalendarComponent {
         $(".react-datepicker__month-select").selectOption("May");
         $(".react-datepicker__year-select").selectOption("2014");
         $x("//div[contains(text(),'15')]").click();
+
+        System.out.println("");
     }
 }
