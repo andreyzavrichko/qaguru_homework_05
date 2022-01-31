@@ -38,7 +38,7 @@ public class RegistrationFormWithPageObjectsTest {
                 .typeState("NCR")
                 .typeCity("Gurgaon")
                 .typeSubmitButton();
-
+        // new comment
         // Assertion
         registrationPage.checkVisibleTable();
         registrationPage

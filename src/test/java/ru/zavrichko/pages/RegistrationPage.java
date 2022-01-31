@@ -29,6 +29,9 @@ public class RegistrationPage {
             visibleTable = $("#example-modal-sizes-title-lg"),
             resultsTable = $(".table-responsive");
 
+
+
+
     public CalendarComponent calendarComponent = new CalendarComponent();
 
     public RegistrationPage openPage() {
